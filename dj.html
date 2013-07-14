@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>KLIK Radio</title>
+<style type="text/css">
+html, body {
+    background-image:url('clouds.jpg');
+    background-size: 100% 100%;
+    height:100%;
+    width:100%;
+    margin:0;
+    padding:0;
+    position:absolute;
+	top:0;
+	right:0;
+	bottom:0;
+	left:0;
+}
+</style>
+<script type="text/javascript">
+
+  var _gaq = _gaq || [];
+  _gaq.push(['_setAccount', 'UA-3581053-3']);
+  _gaq.push(['_trackPageview']);
+
+  (function() {
+    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+  })();
+
+</script>
+<script type="text/javascript" src="http://code.jquery.com/jquery-1.8.2.min.js"></script>
+<script src="http://ajax.googleapis.com/ajax/libs/jqueryui/1.8/jquery-ui.min.js"></script>
+<script type="text/javascript">
+$(document).ready(function() {
+
+	$('#contentWrapper').css('margin-top', (($(window).height() / 2) - 250) + 'px');
+	
+	$('#contentWrapper').fadeIn(500);
+	
+});
+</script>
+<style type="text/css">
+#contents {
+	margin-left: 40px;
+	background-color: #fff;
+	width: 500px;
+	border-radius: 25px;
+	height: 500px;
+}
+
+input[type=text] {
+	background-color: #eee;
+	border: none;
+	font-family: Arial;
+	font-weight: lighter;
+	font-size: 16px;
+	padding: 10px;
+	width: 95%;
+}
+
+input[type=submit] {
+	background-color: #ccc;
+	border: none;
+	font-family: Arial;
+	font-weight: bold;
+	font-size: 16px;
+	padding: 10px;
+	width: 95%;
+}
+</style>
+</head>
+<body>
+<div style="width: 50%; float: left; height: 100%; background-color: rgba(255,255,255,0.5);" align="right">
+<div style="width: 500px; height: 100%; margin-right: 30px;">
+<img src="ilyaklik.png" />
+</div>
+</div>
+
+<div style="width: 50%; float: right; margin-top: 10px; display:none;" align="left" id="contentWrapper">
+<div id="contents">
+<div style="padding: 15px; font-family: Arial; font-size: 14px;">
+<form action="volunteer.php" method="post">
+<p>Your Name:<br />
+<input type="text" name="name" size="50" /></p>
+
+<p>Your School:<br />
+<input type="text" name="school" /></p>
+
+<p>Your Grade:<br />
+<select name="grade">
+	<option>Freshman</option>
+	<option>Sophomore</option>
+	<option>Junior</option>
+	<option>Senior</option>
+</select>
+
+<p>Your E-mail Address:<br />
+<input type="text" name="email" /></p>
+
+<p>Your Phone Number:<br />
+<input type="text" name="phone" /></p>
+
+<p>What are you looking to do?<br />
+<select name="function">
+	<option>Radio Show / DJ</option>
+	<option>Computer Programming / Web Design</option>
+	<option>Event Management</option>
+	<option>Fundraising and Promotions</option>
+</select>
+</p>
+
+<input type="submit" value="Sign me up!" />
+
+</form>
+</div>
+</div>
+</div>
+
+<div style="clear: both; z-index: 5; position: absolute; bottom: 0px; font-size: 8px; color: #ccc; font-family: Arial; width: 50%; left:50%;" align="left"><div style="margin-left: 2px;">KLIK Radio is high school Internet radio from Northern Colorado.<br />Copyright &copy; 2012 KLIK Radio.  Music licensing managed by LoudCity, LLC.</div></div>
+</body>
+</html>
