@@ -59,4 +59,23 @@ class DB {
   {
     return $this->query_count;
   }
+  
+  function query_to_array($sql)
+  {
+    $result = $this->query($sql);
+    if($result)
+    {
+      return mysqli_fetch_assoc($result);
+    }
+    return false;
+  }
+  
+  function result_to_array($result)
+  {
+    if($result)
+    {
+      return mysqli_fetch_assoc($result);
+    }
+    return false;
+  }
 }

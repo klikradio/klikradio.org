@@ -14,6 +14,8 @@ class URL {
   private $type;
   private $status;
   
+  private $page_id;
+  
   private $db;
   
   function __construct($db, $host, $slug)
@@ -23,19 +25,32 @@ class URL {
     $this->slug=$slug;
     
     // Query the Database for the requested host
-    $result = $this->db->query("SELECT * FROM `subdomains` INNER JOIN `domains` ON `subdomains`.`domainid`=`domains`.`id` WHERE `host`='" . $host . "'");
-    $result=  mysqli_fetch_array($result);
+    $result = $this->db->query_to_array("SELECT * FROM `subdomains` INNER JOIN `domains` ON `subdomains`.`domainid`=`domains`.`id` WHERE `host`='" . $host . "'");
     if($result["aliasid"])
     {
-      $result = $this->db->query("SELECT * FROM `subdomains` INNER JOIN `domains` ON `subdomains`.`domainid`=`domains`.`id` WHERE `id`='" . $result["aliasid"] . "'");
-      $result=  mysqli_fetch_array($result);
+      $result = $this->db->query_to_array("SELECT * FROM `subdomains` INNER JOIN `domains` ON `subdomains`.`domainid`=`domains`.`id` WHERE `id`='" . $result["aliasid"] . "'");
     }
     $this->domain_id=$result["domainid"];
     $this->domain=$result["domain"];
     $this->sub_domain_id=$result["id"];
     $this->type=$result["type"];
     $this->status=$result["status"];
+    
+    $this->get_requested_page();
   }
   
+  function get_requested_page()
+  {
+    // $result = $this->db->query_to_array("SELECT * FROM `pages` WHERE NOT `status`='disabled'");
+    $result = $this->db->query("SELECT * FROM `pages` WHERE NOT `status`='disabled'");
+    foreach($result as $row)
+    {
+      
+    }
+  }
+  
+  function get_requested_page_id()
+  {
+    return $this->page_id;
   }
 }
