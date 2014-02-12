@@ -1,6 +1,7 @@
 <?php
 
 // Include the Core Framework Classes
+require_once('framework/framework.php');
 require_once('framework/db_manager.php');
 require_once('framework/url_manager.php');
 
