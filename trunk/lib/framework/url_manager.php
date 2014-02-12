@@ -19,6 +19,8 @@ class URL extends Framework{
   
   private $db;
   
+  private $backend=false;
+  
   function __construct($db, $host, $slug)
   {
     $this->db=$db;
@@ -37,13 +39,20 @@ class URL extends Framework{
     $this->type=$result["type"];
     $this->status=$result["status"];
     
-   $this->page=$this->get_requested_page();
+    if($this->requested_backend())
+    {
+      $this->backend=true;
+    }
+    else
+    {
+      $this->page=$this->get_requested_page();
+    }
   }
   
   function get_requested_page()
   {
     // $result = $this->db->query_to_array("SELECT * FROM `pages` WHERE NOT `status`='disabled'");
-    $result = $this->db->query("SELECT * FROM `pages` WHERE NOT `status`='disabled'");
+    $result = $this->db->query("SELECT * FROM `pages` WHERE `subdomain`='" . $this->sub_domain_id . "' && NOT `status`='disabled'");
     
     foreach($result as $row)
     {
@@ -58,6 +67,15 @@ class URL extends Framework{
     }
     $this->error_404();
     return NULL;
+  }
+  
+  function requested_backend()
+  {
+    if(strpos($this->slug, BACKEND_SLUG) === 1)
+    {
+      return true;
+    }
+    return false;
   }
   
   function get_requested_page_id()
@@ -89,6 +107,16 @@ class URL extends Framework{
     }
     $finalpattern = $finalpattern . '/';
     return $finalpattern;
+  }
+  
+  function get_template()
+  {
+    return $this->page["template"];
+  }
+  
+  function get_page()
+  {
+    return $this->page["page"];
   }
   
   function error_404()
