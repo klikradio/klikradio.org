@@ -5,7 +5,7 @@
  *
  * @author codydaig
  */
-class URL {
+class URL extends Framework{
   private $domain;
   private $domain_id;
   private $sub_domain_id;
@@ -38,7 +38,7 @@ class URL {
     $this->status=$result["status"];
     
    $this->page=$this->get_requested_page();
-   
+   print_r($this->page);
   }
   
   function get_requested_page()
@@ -48,11 +48,17 @@ class URL {
     
     foreach($result as $row)
     {
-      if((substr_count($row["slug"], "/") == substr_count($this->slug, "/")) && (preg_match($this->create_slug_regex($row["slug"]), $this->slug)))
+      if($row["slug"] == $this->slug)
+      {
+        return $row;
+      }
+      else if((substr_count($row["slug"], "/") == substr_count($this->slug, "/")) && (preg_match($this->create_slug_regex($row["slug"]), $this->slug)))
       {
         return $row;
       }
     }
+    $this->error_404();
+    return NULL;
   }
   
   function get_requested_page_id()
@@ -84,5 +90,10 @@ class URL {
     }
     $finalpattern = $finalpattern . '/';
     return $finalpattern;
+  }
+  
+  function error_404()
+  {
+    print '404 - Page can not be found';
   }
 }
