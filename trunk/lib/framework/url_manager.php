@@ -6,11 +6,21 @@
  * @author codydaig
  */
 class URL {
-  private $DOMAIN;
-  private $SUB_DOMAIN;
+  private $domain;
+  private $sub_domain;
+  private $host;
+  private $slug;
   
-  function __construct()
+  private $db;
+  
+  function __construct($db, $host, $slug)
   {
+    $this->db=$db;
+    $this->host=$host;
+    $this->slug=$slug;
     
+    // Query the Database for the requested host
+    $result = $this->db->query("SELECT * FROM `subdomains` INNER JOIN `domains` ON `subdomains`.`domainid`=`domains`.`id` WHERE `host`='" . $host . "'");
+    var_dump(mysqli_fetch_array($result));
   }
 }
