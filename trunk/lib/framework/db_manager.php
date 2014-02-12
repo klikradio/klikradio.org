@@ -5,7 +5,7 @@
  *
  * @author codydaig
  */
-class DB {
+class DB extends Framework{
   private $conn;
   
   private $host;
