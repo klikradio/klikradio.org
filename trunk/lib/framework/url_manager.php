@@ -39,7 +39,7 @@ class URL extends Framework{
     $this->type=$result["type"];
     $this->status=$result["status"];
     
-    if($this->requested_backend())
+    if($this->is_backend())
     {
       $this->backend=true;
     }
@@ -69,7 +69,7 @@ class URL extends Framework{
     return NULL;
   }
   
-  function requested_backend()
+  function is_backend()
   {
     if(strpos($this->slug, BACKEND_SLUG) === 1)
     {
@@ -117,6 +117,11 @@ class URL extends Framework{
   function get_page()
   {
     return $this->page["page"];
+  }
+  
+  function get_permission()
+  {
+    return $this->page["permissions"];
   }
   
   function error_404()
