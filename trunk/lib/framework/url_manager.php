@@ -38,7 +38,6 @@ class URL extends Framework{
     $this->status=$result["status"];
     
    $this->page=$this->get_requested_page();
-   print_r($this->page);
   }
   
   function get_requested_page()
