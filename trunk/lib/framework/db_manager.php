@@ -62,7 +62,7 @@ class DB {
   
   function query_to_array($sql)
   {
-    $result = $this->query($sql);
+    $result = $this->query($sql . " LIMIT 1");
     if($result)
     {
       return mysqli_fetch_assoc($result);
