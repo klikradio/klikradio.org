@@ -5,13 +5,11 @@
  *
  * @author codydaig
  */
-class PAGE extends URL{
+class PAGE extends Framework{
   private $url;
   
-  function __construct($DB)
+  function __construct($url)
   {
-    parent::__construct($DB, $_SERVER["HTTP_HOST"], $_SERVER["REQUEST_URI"]);
-    
-    print $this->get_requested_page_id();
+    $this->url=$url;
   }
 }

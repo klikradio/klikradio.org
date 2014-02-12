@@ -14,7 +14,9 @@ require_once('config.php');
 
 /* Start Loading the Website */
 
-// Connect to the Database
+// Create the Database Instance
 $DB = new DB($SQLHOST, $SQLUSER, $SQLPASS, $SQLDB);
 
-$PAGE = new PAGE($DB);
+$URL = new URL($DB, $_SERVER["HTTP_HOST"], $_SERVER["REQUEST_URI"]);
+
+$PAGE = new PAGE($URL);
