@@ -7,9 +7,12 @@
  */
 class URL {
   private $domain;
-  private $sub_domain;
+  private $domain_id;
+  private $sub_domain_id;
   private $host;
   private $slug;
+  private $type;
+  private $status;
   
   private $db;
   
@@ -21,6 +24,18 @@ class URL {
     
     // Query the Database for the requested host
     $result = $this->db->query("SELECT * FROM `subdomains` INNER JOIN `domains` ON `subdomains`.`domainid`=`domains`.`id` WHERE `host`='" . $host . "'");
-    var_dump(mysqli_fetch_array($result));
+    $result=  mysqli_fetch_array($result);
+    if($result["aliasid"])
+    {
+      $result = $this->db->query("SELECT * FROM `subdomains` INNER JOIN `domains` ON `subdomains`.`domainid`=`domains`.`id` WHERE `id`='" . $result["aliasid"] . "'");
+      $result=  mysqli_fetch_array($result);
+    }
+    $this->domain_id=$result["domainid"];
+    $this->domain=$result["domain"];
+    $this->sub_domain_id=$result["id"];
+    $this->type=$result["type"];
+    $this->status=$result["status"];
+  }
+  
   }
 }
