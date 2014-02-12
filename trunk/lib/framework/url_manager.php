@@ -15,6 +15,7 @@ class URL {
   private $status;
   
   private $page_id;
+  private $page;
   
   private $db;
   
@@ -36,21 +37,52 @@ class URL {
     $this->type=$result["type"];
     $this->status=$result["status"];
     
-    $this->get_requested_page();
+   $this->page=$this->get_requested_page();
+   
   }
   
   function get_requested_page()
   {
     // $result = $this->db->query_to_array("SELECT * FROM `pages` WHERE NOT `status`='disabled'");
     $result = $this->db->query("SELECT * FROM `pages` WHERE NOT `status`='disabled'");
+    
     foreach($result as $row)
     {
-      
+      if((substr_count($row["slug"], "/") == substr_count($this->slug, "/")) && (preg_match($this->create_slug_regex($row["slug"]), $this->slug)))
+      {
+        return $row;
+      }
     }
   }
   
   function get_requested_page_id()
   {
-    return $this->page_id;
+    return $this->page["id"];
+  }
+  
+  function create_slug_regex($subject)
+  {
+    $finalpattern = '/\/';
+    
+    $pieces = explode("/", substr($subject, 1, -1));
+    foreach($pieces as $piece)
+    {
+      if($piece == "*")
+      {
+        $finalpattern = $finalpattern . "[a-z0-9]*";
+      }
+      else
+      {
+        $letters = str_split($piece);
+        foreach($letters as $letter)
+        {
+          $finalpattern = $finalpattern . "[" . $letter . "]";
+        }
+      }
+      
+      $finalpattern = $finalpattern . "\/";
+    }
+    $finalpattern = $finalpattern . '/';
+    return $finalpattern;
   }
 }
