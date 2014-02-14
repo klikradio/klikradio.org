@@ -119,6 +119,11 @@ class URL extends Framework{
     return $this->page["page"];
   }
   
+  function get_all()
+  {
+    return $this->page;
+  }
+  
   function get_permission()
   {
     return $this->page["permissions"];

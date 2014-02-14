@@ -31,6 +31,21 @@ class PAGE extends Framework{
     return $this->head;
   }
   
+  function print_headers()
+  {
+    $return = "";
+    foreach ($this->head as $element)
+    {
+      $return .= $element . "\n";
+    }
+    return $return;
+  }
+  
+  function title()
+  {
+    return $this->url->get_title;
+  }
+  
   function get_content()
   {
     return $this->content;
