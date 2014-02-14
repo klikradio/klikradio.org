@@ -18,7 +18,7 @@ class Dashboard extends Backend{
   
   function config()
   {
-    
+    $this->add_content();
   }
 
 }
