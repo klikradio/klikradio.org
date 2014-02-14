@@ -29,7 +29,5 @@ if($URL->is_backend())
 }
 else
 {
-  $page = $URL->get_page();
   require_once('pages/frontend/' . $page . ".php");
-  $PAGE = new $page($URL);
 }
