@@ -12,11 +12,11 @@
   <title><?= $page_vars["meta_title"]; ?></title>
 
   <!-- Bootstrap core CSS -->
-  <link href="css/bootstrap.css" rel="stylesheet">
+  <link href="/css/bootstrap.css" rel="stylesheet">
 
   <!-- Add custom CSS here -->
-  <link href="css/modern-business.css" rel="stylesheet">
-  <link href="font-awesome/css/font-awesome.min.css" rel="stylesheet">
+  <link href="/css/modern-business.css" rel="stylesheet">
+  <link href="/font-awesome/css/font-awesome.min.css" rel="stylesheet">
 </head>
 
 <body>
@@ -52,9 +52,9 @@
     <?php include PAGE_ROOT . 'elements/footer.php'; ?>
 
     <!-- JavaScript -->
-    <script src="js/jquery-1.10.2.js"></script>
-    <script src="js/bootstrap.js"></script>
-    <script src="js/modern-business.js"></script>
+    <script src="/js/jquery-1.10.2.js"></script>
+    <script src="/js/bootstrap.js"></script>
+    <script src="/js/modern-business.js"></script>
 
 </body>
 
