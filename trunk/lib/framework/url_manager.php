@@ -39,9 +39,11 @@ class URL extends Framework{
     $this->type=$result["type"];
     $this->status=$result["status"];
     
-    if($this->is_backend())
+    if(strpos($this->slug, BACKEND_SLUG) === 1)
     {
       $this->backend=true;
+      $this->page=$this->get_requested_backend_page();
+      var_dump($this->page);
     }
     else
     {
@@ -69,13 +71,30 @@ class URL extends Framework{
     return NULL;
   }
   
+  function get_requested_backend_page()
+  {
+    $result = $this->db->query("SELECT * FROM `pages` WHERE `type`='backend' && NOT `status`='disabled'");
+    
+    $this->slug=str_replace(BACKEND_SLUG, 'backend', $this->slug);
+    
+    foreach($result as $row)
+    {
+      if($row["slug"] == $this->slug)
+      {
+        return $row;
+      }
+      else if((substr_count($row["slug"], "/") == substr_count($this->slug, "/")) && (preg_match($this->create_slug_regex($row["slug"]), $this->slug)))
+      {
+        return $row;
+      }
+    }
+    $this->error_404();
+    return NULL;
+  }
+  
   function is_backend()
   {
-    if(strpos($this->slug, BACKEND_SLUG) === 1)
-    {
-      return true;
-    }
-    return false;
+    return $this->backend;
   }
   
   function get_requested_page_id()

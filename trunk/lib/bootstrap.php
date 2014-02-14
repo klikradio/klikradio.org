@@ -27,12 +27,12 @@ $URL = new URL($DB, $_SERVER["HTTP_HOST"], $_SERVER["REQUEST_URI"]);
 if($URL->is_backend())
 {
   print 'boss man has been activated';
-  $BACKEND = new BACKEND($URL);
+  $PAGE = new BACKEND($URL);
+  // require_once('backend/pages/')
 }
 else
 {
   $template = $URL->get_template();
-  $PAGE = new PAGE($URL);
   $page_vars = $URL->get_all();
   require_once('pages/templates/' . $template . ".php");
 }
