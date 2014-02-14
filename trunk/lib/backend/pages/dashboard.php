@@ -10,15 +10,15 @@ class Dashboard extends Backend{
   
   function __construct($url) {
     parent::__construct($url);
+    
+    $this->config();
+    
+    $this->build();
   }
   
   function config()
   {
-    $this->add_head("");
-  }
-  
-  function build()
-  {
     
   }
+
 }

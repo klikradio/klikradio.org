@@ -43,7 +43,6 @@ class URL extends Framework{
     {
       $this->backend=true;
       $this->page=$this->get_requested_backend_page();
-      var_dump($this->page);
     }
     else
     {

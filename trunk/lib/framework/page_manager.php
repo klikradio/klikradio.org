@@ -33,12 +33,28 @@ class PAGE extends Framework{
   
   function print_headers()
   {
-    $return = "";
+    $return = "<!DOCTYPE html>\n<html>\n<head>\n";
     foreach ($this->head as $element)
     {
       $return .= $element . "\n";
     }
     return $return;
+  }
+  
+  function print_content()
+  {
+    $return = "</head>\n<body>\n";
+    $return .= '<div id="wrapper">';
+    foreach($this->content as $element)
+    {
+      $return .= $element . "\n";
+    }
+    return $return;
+  }
+  
+  function print_closing()
+  {
+    return "</body>\n</html>";
   }
   
   function title()
@@ -57,10 +73,43 @@ class PAGE extends Framework{
     new $element($this);
   }
   
-  function build_page()
+  function add_global_headers()
   {
-    $template = $this->url->get_template();
-    require_once(LIB_ROOT . '/pages/templates/' . $template . '.php');
-    new $template($this);
+    $this->add_head('<meta charset="utf-8">');
+    $this->add_head('<meta name="viewport" content="width=device-width, initial-scale=1.0">');
+    $this->add_head('<title>Boss-Man</title>');
+    $this->add_head('<link href="/css/bootstrap.min.css" rel="stylesheet">');
+    $this->add_head('<link href="/font-awesome/css/font-awesome.css" rel="stylesheet">');
+    $this->add_head('<link href="/css/plugins/morris/morris-0.4.3.min.css" rel="stylesheet">');
+    $this->add_head('<link href="/css/plugins/timeline/timeline.css" rel="stylesheet">');
+    $this->add_head('<link href="/css/sb-admin.css" rel="stylesheet">');
+  }
+  
+  function add_global_foot_scripts()
+  {
+    $this->add_content('</div>');
+    $this->add_content('<script src="/js/jquery-1.10.2.js"></script>');
+    $this->add_content('<script src="/js/bootstrap.min.js"></script>');
+    $this->add_content('<script src="/js/plugins/metisMenu/jquery.metisMenu.js"></script>');
+    $this->add_content('<script src="/js/plugins/morris/raphael-2.1.0.min.js"></script>');
+    $this->add_content('<script src="/js/plugins/morris/morris.js"></script>');
+    $this->add_content('<script src="/js/sb-admin.js"></script>');
+    $this->add_content('<script src="/js/demo/dashboard-demo.js"></script>');
+  }
+  
+  function build()
+  {
+    $this->add_global_headers();
+    
+    print $this->print_headers();
+    
+    include(LIB_ROOT . '/backend/elements/topbar.php');
+    include(LIB_ROOT . '/backend/elements/navbar.php');
+    
+    $this->add_global_foot_scripts();
+    
+    print $this->print_content();
+    
+    print $this->print_closing();
   }
 }
