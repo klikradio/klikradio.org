@@ -12,11 +12,5 @@
  * @author codydaig
  */
 class BACKEND extends Page {
-  function __construct($url)
-  {
-    parent::__construct($url);
-    
-    
-    
-  }
+  // Is class even necessary??
 }

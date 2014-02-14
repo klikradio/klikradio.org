@@ -27,8 +27,9 @@ $URL = new URL($DB, $_SERVER["HTTP_HOST"], $_SERVER["REQUEST_URI"]);
 if($URL->is_backend())
 {
   print 'boss man has been activated';
-  $PAGE = new BACKEND($URL);
-  // require_once('backend/pages/')
+  $page = $URL->get_page();
+  require_once('backend/pages/' . $page . '.php');
+  $PAGE = new $page($URL);
 }
 else
 {
