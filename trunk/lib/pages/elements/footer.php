@@ -1,19 +1,14 @@
-<?php
+<div class="container">
 
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
+    <hr>
 
-/**
- * Description of footer
- *
- * @author codydaig
- */
-class footer extends PAGE{
-  function __construct($page)
-  {
-    $page->add_content('The Generic Footer For Every Page &copy; 2014');
-  }
-}
+    <footer>
+        <div class="row">
+            <div class="col-lg-12">
+                <p>Copyright &copy; KLIK Radio 2014</p>
+            </div>
+        </div>
+    </footer>
+
+</div>
+<!-- /.container -->
