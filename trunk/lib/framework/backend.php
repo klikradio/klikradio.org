@@ -11,6 +11,11 @@
  *
  * @author codydaig
  */
-class backend {
-  //put your code here
+class BACKEND extends Page {
+  function __construct($url)
+  {
+    parent::__construct($url);
+    
+    
+  }
 }

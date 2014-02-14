@@ -7,6 +7,7 @@ require_once('framework/url_manager.php');
 require_once('framework/page_manager.php');
 require_once('framework/user_manager.php');
 require_once('framework/session_manager.php');
+require_once('framework/backend.php');
 
 // Include Site Specific Classes
 
@@ -26,6 +27,7 @@ $URL = new URL($DB, $_SERVER["HTTP_HOST"], $_SERVER["REQUEST_URI"]);
 if($URL->is_backend())
 {
   print 'boss man has been activated';
+  $BACKEND = new BACKEND($URL);
 }
 else
 {
